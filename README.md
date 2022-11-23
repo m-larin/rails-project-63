@@ -1,5 +1,5 @@
 [![Actions Status](https://github.com/m-larin/rails-project-63/workflows/hexlet-check/badge.svg)](https://github.com/m-larin/rails-project-63/actions)
-[![Actions Status](https://github.com/m-larin/rails-project-63/workflows/main/badge.svg)](https://github.com/m-larin/rails-project-63/actions?query=workflow%3ACI)
+[![Actions Status](https://github.com/m-larin/rails-project-63/workflows/test/badge.svg)](https://github.com/m-larin/rails-project-63/actions?query=workflow:test)
 
 # HexletCode
 
