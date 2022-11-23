@@ -1,11 +1,11 @@
-[![Actions Status](https://github.com/m-larin/rails-project-63/workflows/hexlet-check/badge.svg)](https://github.com/m-larin/rails-project-63/actions)
+[![Actions Status](https://github.com/m-larin/rails-project-63/workflows/hexlet-check/badge.svg)](https://github.com/m-larin/rails-project-63/actions?query=workflow:hexlet-check)
 [![Actions Status](https://github.com/m-larin/rails-project-63/workflows/test/badge.svg)](https://github.com/m-larin/rails-project-63/actions?query=workflow:test)
+[![Actions Status](https://github.com/m-larin/rails-project-63/workflows/lint/badge.svg)](https://github.com/m-larin/rails-project-63/actions?query=workflow:lint)
 
 # HexletCode
 
 Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/hexlet_code`. To experiment with that code, run `bin/console` for an interactive prompt.
 
-TODO: Delete this and the text above, and describe your gem
 
 ## Installation
 
@@ -19,7 +19,7 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
 ## Usage
 
-TODO: Write usage instructions here
+    HexletCode::Tag.build('img', src: 'path/to/image')
 
 ## Development
 
@@ -29,4 +29,4 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/hexlet_code.
+Bug reports and pull requests are welcome on GitHub at https://github.com/m-larin/rails-project-63.

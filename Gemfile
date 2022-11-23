@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-ruby '3.1.2'
+ruby "3.1.2"
 
 source "https://rubygems.org"
 
@@ -12,3 +12,5 @@ gem "rake", "~> 13.0"
 gem "minitest", "~> 5.0"
 
 gem "rubocop", "~> 1.21"
+
+gem "minitest-power_assert"

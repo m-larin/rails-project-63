@@ -2,8 +2,6 @@ PATH
   remote: .
   specs:
     hexlet_code (0.1.0)
-      minitest-power_assert
-      rubocop
 
 GEM
   remote: https://rubygems.org/
@@ -43,6 +41,7 @@ PLATFORMS
 DEPENDENCIES
   hexlet_code!
   minitest (~> 5.0)
+  minitest-power_assert
   rake (~> 13.0)
   rubocop (~> 1.21)
 
