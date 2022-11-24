@@ -1,22 +1,59 @@
 # frozen_string_literal: true
 
-require_relative "hexlet_code/version"
+require "hexlet_code/version"
 
+# Модуль учебной задачи Hexlet
 module HexletCode
   class Error < StandardError; end
+  autoload :Tag, "hexlet_code/tag"
 
-  # Модуль генерации тегов
-  module Tag
-    TAG_NAMES = %w[br img input].freeze
-
-    def self.build(tag, attributes = {})
-      raise "Tag #{tag} is not supported" unless TAG_NAMES.include? tag.downcase
-
-      attributes_as_string = ""
-      attributes.each do |attr_name, attr_value|
-        attributes_as_string += " #{attr_name}=\"#{attr_value}\""
-      end
-      "<#{tag}#{attributes_as_string}>"
+  # Генератор полей формы
+  class FormInputGenerator
+    def initialize(obj)
+      @form_obj = obj
+      @result = String.new
     end
+
+    def input(name, attrs = {})
+      object_value = @form_obj.public_send name
+
+      tag = if attrs[:as] == :text
+              "textarea"
+            else
+              "input"
+            end
+
+      tag_attrs = attrs.filter { |key, _value| key != :as }.merge name: name
+
+      @result += HexletCode::Tag.build("label", { for: name }) { name.to_s.capitalize }
+
+      if tag == "textarea"
+        tag_attrs = { cols: "20", rows: "40" }.merge(tag_attrs)
+        @result += HexletCode::Tag.build(tag, tag_attrs) { object_value }
+      else
+        tag_attrs = { type: "text" }.merge(tag_attrs).merge(value: object_value)
+        @result += HexletCode::Tag.build(tag, tag_attrs)
+      end
+    end
+
+    def submit(value = "Save")
+      @result += HexletCode::Tag.build "input", { type: "submit", value: value }
+    end
+
+    def to_s
+      @result
+    end
+  end
+
+  def self.form_for(obj, attributes = {})
+    action = attributes[:url]
+    action ||= "#"
+
+    result = "<form action=\"#{action}\" method=\"post\">"
+    generator = FormInputGenerator.new obj
+    yield(generator)
+    result += generator.to_s
+    result += "</form>"
+    result
   end
 end
