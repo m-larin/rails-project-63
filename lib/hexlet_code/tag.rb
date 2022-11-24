@@ -8,7 +8,7 @@ module HexletCode
     def self.build(tag, attributes = {})
       raise "Tag #{tag} is not supported" unless TAG_NAMES.include? tag.downcase
 
-      attributes_as_string = ""
+      attributes_as_string = ''
       attributes.each do |attr_name, attr_value|
         attributes_as_string += " #{attr_name}=\"#{attr_value}\""
       end
