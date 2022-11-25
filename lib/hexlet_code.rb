@@ -17,13 +17,9 @@ module HexletCode
     def input(name, attrs = {})
       object_value = @form_obj.public_send name
 
-      tag = if attrs[:as] == :text
-              'textarea'
-            else
-              'input'
-            end
+      tag = attrs[:as] == :text ? 'textarea' : 'input'
 
-      tag_attrs = attrs.filter { |key, _value| key != :as }.merge name: name
+      tag_attrs = attrs.except(:as).merge name: name
 
       @result += HexletCode::Tag.build('label', { for: name }) { name.to_s.capitalize }
 
@@ -36,8 +32,8 @@ module HexletCode
       end
     end
 
-    def submit(value = 'Save')
-      @result += HexletCode::Tag.build 'input', { type: 'submit', value: }
+    def submit(val = 'Save')
+      @result += HexletCode::Tag.build 'input', type: 'submit', value: val
     end
 
     def to_s
@@ -50,9 +46,11 @@ module HexletCode
     action ||= '#'
 
     result = "<form action=\"#{action}\" method=\"post\">"
-    generator = FormInputGenerator.new obj
-    yield(generator)
-    result += generator.to_s
+    if block_given?
+      generator = FormInputGenerator.new obj
+      yield(generator)
+      result += generator.to_s
+    end
     result += '</form>'
     result
   end
